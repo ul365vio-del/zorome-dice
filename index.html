@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎲 ゾロ目ダイス ∞</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">ULTIMATE COSMIC EDITION</p>
+        <h1>🎲 ゾロ目ダイス ∞</h1>
+        <p class="subtitle">振るたびに、宇宙の限界を超えていく。</p>
+      </div>
+      <div class="save-box">
+        <span id="save-status">まだセーブされていません</span>
+        <button id="btn-save" class="small-btn">💾 手動セーブ</button>
+      </div>
+    </header>
+
+    <section class="stats-grid">
+      <article class="stat"><span>ポイント</span><strong id="p-text">0</strong></article>
+      <article class="stat"><span>ダイス数</span><strong id="d-text">2</strong></article>
+      <article class="stat"><span>現在の上限</span><strong id="max-text">100</strong></article>
+      <article class="stat"><span>獲得倍率</span><strong id="mul-text">1</strong></article>
+    </section>
+
+    <section class="panel dice-panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">ROLL THE DICE</p><h2>ダイスチャレンジ</h2></div>
+        <div id="combo-msg" class="combo">⚡ COMBO ×0 (+0%)</div>
+      </div>
+      <div id="box-area" class="dice-area"></div>
+      <div id="crit-msg" class="message critical"></div>
+      <div id="alert-msg" class="message"></div>
+      <button id="roll-button" class="roll-button">🎲 ダイスを振る！</button>
+      <p class="hint">ゾロ目などでダイス数が増加！ポイントを集めて強化しよう。</p>
+    </section>
+
+    <section class="panel">
+      <h2>⚙️ 基本強化</h2>
+      <div class="upgrade-grid">
+        <article class="upgrade"><h3>連続ロール</h3><p>1回の操作で振る回数：<b id="sub-lv">1</b></p><button id="btn-sub">10 P</button></article>
+        <article class="upgrade"><h3>オートロール</h3><p>自動ロールLv：<b id="auto-lv">0</b></p><p>速度：<b id="auto-val">未開放</b></p><button id="btn-auto">50 P</button></article>
+        <article class="upgrade"><h3>臨界突破</h3><p>Lv：<b id="crit-lv">0</b> / 確率 <b id="crit-chance">5%</b></p><p>クリティカル倍率 ×<b id="crit-mul">3</b></p><button id="btn-crit">強化</button></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>🌀 転生・超越</h2>
+      <div class="upgrade-grid">
+        <article class="upgrade"><h3>ソウル転生</h3><p>ソウル：<b id="soul-text">0</b></p><p>倍率 ×<b id="soul-mul">1</b> / 獲得予定 <b id="soul-gain">1</b></p><button id="btn-prestige">転生</button></article>
+        <article class="upgrade"><h3>ダイス上限突破</h3><p>現在上限：<b id="limit-current">100</b></p><p>次の上限：<b id="next-max">1,000</b></p><button id="btn-limit">1 ソウル</button></article>
+        <article class="upgrade"><h3>宇宙転生</h3><p>銀河結晶：<b id="galaxy-text">0</b></p><p>自動速度補正 ×<b id="galaxy-speed">1</b> / 獲得予定 <b id="galaxy-gain">0</b></p><button id="btn-galaxy">宇宙転生</button></article>
+        <article class="upgrade"><h3>次元超越</h3><p>次元の鍵：<b id="dimension-text">0</b></p><p>開始ダイス：<b id="dimension-start">2</b> / 必要数 <b id="dimension-required">200</b></p><button id="btn-dimension">次元超越</button></article>
+        <article class="upgrade"><h3>時間超越</h3><p>時間結晶：<b id="time-text">0</b></p><p>倍率 ×<b id="time-mul">1</b> / 獲得予定 <b id="time-gain">未解放</b></p><button id="btn-time">時間超越</button></article>
+        <article class="upgrade"><h3>🌑 ダークマター転生</h3><p>ダークマター：<b id="dark-text">0</b></p><p>倍率 ×<b id="dark-mul">1</b> / 獲得予定 <b id="dark-gain">未解放</b></p><button id="btn-dark">未解放</button></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>🕳️ 深淵の強化</h2>
+      <div class="upgrade-grid">
+        <article class="upgrade"><h3>ブラックホール</h3><p>Lv：<b id="black-lv">0</b> / 倍率 ×<b id="black-mul">1</b></p><p>次の強化：<b id="black-cost">5</b> DM</p><button id="btn-black">強化</button></article>
+        <article class="upgrade"><h3>多元宇宙転生</h3><p>エネルギー：<b id="multi-text">0</b></p><p>倍率 ×<b id="multi-mul">1</b> / 獲得予定 <b id="multi-gain">未解放</b></p><button id="btn-multi">転生</button></article>
+        <article class="upgrade"><h3>👑 神格化</h3><p>神格ポイント：<b id="god-text">0</b></p><p>倍率 ×<b id="god-mul">1</b> / 獲得予定 <b id="god-gain">未解放</b></p><button id="btn-god">神格化</button></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>🔬 異次元研究</h2>
+      <div class="upgrade-grid">
+        <article class="upgrade"><h3>ポイント理論</h3><p>Lv：<b id="res1-lv">0</b> / ポイント倍率強化</p><button id="btn-res1">研究</button></article>
+        <article class="upgrade"><h3>成功率理論</h3><p>Lv：<b id="res2-lv">0</b> / 成功率上昇</p><button id="btn-res2">研究</button></article>
+        <article class="upgrade"><h3>臨界理論</h3><p>Lv：<b id="res3-lv">0</b> / クリティカル強化</p><button id="btn-res3">研究</button></article>
+        <article class="upgrade"><h3>成長理論</h3><p>Lv：<b id="res4-lv">0</b> / ダイス成長率上昇</p><button id="btn-res4">研究</button></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>🔥 暴走モード</h2>
+      <div class="upgrade-grid">
+        <article class="upgrade"><h3>暴走状態</h3><p>状態：<b id="rage-time">待機中</b></p><p>発動倍率：×<b id="rage-mul">100</b></p><button id="btn-rage">30秒間 暴走！</button></article>
+        <article class="upgrade"><h3>暴走強化</h3><p>暴走Lv：<b id="rage-lv">0</b></p><button id="btn-rage-up">暴走強化</button></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>💎 神の遺物</h2>
+      <p>所持遺物：<b id="relic-count">0</b> / 遺物倍率：×<b id="relic-mul">1</b></p>
+      <button id="btn-relic">1,000 Pで遺物を探索</button>
+      <div id="relic-list" class="list-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>🏆 実績</h2>
+      <div id="achievement-list" class="list-grid"></div>
+    </section>
+
+    <footer class="footer">
+      <p>このゲームのデータは、このブラウザ内に保存されます。</p>
+      <button id="btn-reset" class="danger">全データをリセット</button>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
